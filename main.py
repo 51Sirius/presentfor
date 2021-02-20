@@ -11,4 +11,13 @@ pg.display.set_caption('Present')
 
 
 def start():
-    pass
+    show_menu = True
+    while show_menu:
+        event = pg.event.poll()
+        if event.type == pg.QUIT:
+            exit()
+        display.fill(blue_color)
+        pg.display.update()
+
+
+start()
