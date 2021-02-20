@@ -10,16 +10,22 @@ pg.init()
 pg.display.set_caption('Present')
 
 
-def mouse_effects(number: int):
-    mouse_x = pg.mouse.get_pos()[0]
-    mouse_x = pg.mouse.get_pos()[1]
-    number += 1
-    if number >= 1000:
-        number = 1
-    return number
+class Effect_mouse:
+    def __init__(self):
+        self.width = 1
+        self.color = white_color
+
+    def circle_draw(self, x, y):
+        pg.draw.circle(display, self.color, (x, y), self.width)
+
+    def mouse(self):
+        mouse_x = pg.mouse.get_pos()[0]
+        mouse_y = pg.mouse.get_pos()[1]
+        self.circle_draw(mouse_x, mouse_y)
 
 
 def start():
+    effects_m = Effect_mouse()
     number = 1
     show_menu = True
     while show_menu:
@@ -27,7 +33,7 @@ def start():
         if event.type == pg.QUIT:
             exit()
         display.fill(blue_color)
-        number = mouse_effects(number)
+        effects_m.mouse()
         pg.display.update()
 
 
