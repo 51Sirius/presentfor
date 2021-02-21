@@ -12,6 +12,12 @@ clock = pg.time.Clock()
 pg.display.set_caption('Present')
 
 
+def draw_right_flower(middle_color=(255, 255, 0), flower_color=None):
+    color_stem = (0, 255, 0)
+    stem = pg.draw.line(display, color_stem, [900, 600], [900, 260], 10)
+    middle_circle = pg.draw.circle(display, middle_color, (900, 300), 50)
+
+
 def change_color(max_color, color: tuple):
     color = list(color)
     if color[0] <= 255 and color[1] == max_color and color[0] != max_color:
@@ -111,6 +117,7 @@ def start():
         display.fill(blue_color)
         effects_m.mouse()
         font.draw_text()
+        draw_right_flower()
         font.font_color = change_color(206, font.font_color)
         pg.display.update()
         clock.tick(80)
