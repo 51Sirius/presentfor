@@ -13,7 +13,7 @@ pg.display.set_caption('Present')
 
 
 class Font:
-    def __init__(self, x, y, font_color=(0, 0, 0), font_size=30, font_type='20011.ttf',
+    def __init__(self, x, y, font_color=pink_color, font_size=30, font_type='20216.ttf',
                  message=None):
         self.x = x
         self.y = y
@@ -74,6 +74,7 @@ class Effect_mouse:
 
 
 def start():
+    font = Font(100, 200, font_size=60, message='Entry your present')
     effects_m = Effect_mouse()
     number = 1
     show_menu = True
@@ -83,6 +84,7 @@ def start():
             exit()
         display.fill(blue_color)
         effects_m.mouse()
+        font.draw_text()
         pg.display.update()
         clock.tick(80)
 
