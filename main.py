@@ -14,21 +14,39 @@ pg.display.set_caption('Present')
 class Effect_mouse:
     def __init__(self):
         self.new = True
-        self.width = 10
+        self.width = 8
         self.color = white_color
         self.amount = 0
+        self.points_list = []
+        self.timer = 0
 
     def circle_draw(self, x, y):
         pg.draw.circle(display, self.color, (x, y), self.width)
 
     def mouse(self):
+        self.timer += 1
+        if self.timer >= 500:
+            self.new = True
         mouse_x = pg.mouse.get_pos()[0]
         mouse_y = pg.mouse.get_pos()[1]
         if self.new:
             self.amount = rand.randint(2, 6)
             self.new = False
-        for i in range(self.amount):
-            self.circle_draw(mouse_x+rand.randint(10, 30), mouse_y+rand.randint(10, 30))
+            self.points_list = []
+            for j in range(self.amount):
+                r = rand.randint(1, 4)
+                self.points_list.append([0, 0, r])
+        for i in range(len(self.points_list)):
+            self.points_list[i][0] += rand.randint(1, 4)
+            self.points_list[i][1] += rand.randint(1, 4)
+            if self.points_list[i][2] == 1:
+                self.circle_draw(mouse_x+self.points_list[i][0], mouse_y+self.points_list[i][1])
+            elif self.points_list[i][2] == 2:
+                self.circle_draw(mouse_x-self.points_list[i][0], mouse_y+self.points_list[i][1])
+            elif self.points_list[i][2] == 3:
+                self.circle_draw(mouse_x-self.points_list[i][0], mouse_y-self.points_list[i][1])
+            elif self.points_list[i][2] == 4:
+                self.circle_draw(mouse_x+self.points_list[i][0], mouse_y-self.points_list[i][1])
 
 
 def start():
