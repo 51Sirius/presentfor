@@ -8,6 +8,7 @@ purple_color = (202, 187, 233)
 display_size = (1000, 600)
 display = pg.display.set_mode(display_size)
 pg.init()
+clock = pg.time.Clock()
 pg.display.set_caption('Present')
 
 
@@ -25,20 +26,21 @@ class Effect_mouse:
 
     def mouse(self):
         self.timer += 1
-        if self.timer >= 500:
+        if self.timer >= 30:
             self.new = True
         mouse_x = pg.mouse.get_pos()[0]
         mouse_y = pg.mouse.get_pos()[1]
         if self.new:
             self.amount = rand.randint(2, 6)
             self.new = False
+            self.timer = 0
             self.points_list = []
             for j in range(self.amount):
                 r = rand.randint(1, 4)
                 self.points_list.append([0, 0, r])
         for i in range(len(self.points_list)):
-            self.points_list[i][0] += rand.randint(1, 4)
-            self.points_list[i][1] += rand.randint(1, 4)
+            self.points_list[i][0] += rand.randint(1, 3)
+            self.points_list[i][1] += rand.randint(1, 3)
             if self.points_list[i][2] == 1:
                 self.circle_draw(mouse_x+self.points_list[i][0], mouse_y+self.points_list[i][1])
             elif self.points_list[i][2] == 2:
@@ -60,6 +62,7 @@ def start():
         display.fill(blue_color)
         effects_m.mouse()
         pg.display.update()
+        clock.tick(80)
 
 
 start()
