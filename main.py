@@ -12,6 +12,22 @@ clock = pg.time.Clock()
 pg.display.set_caption('Present')
 
 
+class Font:
+    def __init__(self, x, y, font_color=(0, 0, 0), font_size=30, font_type='20011.ttf',
+                 message=None):
+        self.x = x
+        self.y = y
+        self.font_color = font_color
+        self.font_type = font_type
+        self.font_size = font_size
+        self.message = message
+
+    def draw_text(self, ms=None):
+        font_type = pg.font.Font(self.font_type, self.font_size)
+        text = font_type.render(self.message, True, self.font_color)
+        display.blit(text, (self.x, self.y))
+
+
 class Effect_mouse:
     def __init__(self):
         self.new = True
