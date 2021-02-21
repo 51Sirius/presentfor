@@ -16,7 +16,7 @@ class Effect_mouse:
     def __init__(self):
         self.new = True
         self.width = 8
-        self.color = white_color
+        self.color = purple_color
         self.amount = 0
         self.points_list = []
         self.timer = 0
@@ -37,7 +37,7 @@ class Effect_mouse:
         mouse_x = pg.mouse.get_pos()[0]
         mouse_y = pg.mouse.get_pos()[1]
         if self.new:
-            self.amount = rand.randint(2, 6)
+            self.amount = rand.randint(4, 10)
             self.new = False
             self.timer = 0
             self.points_list = []
