@@ -28,6 +28,12 @@ class Effect_mouse:
         self.timer += 1
         if self.timer >= 30:
             self.new = True
+        if self.timer < 10:
+            self.width = 6
+        elif self.timer >= 10 and (self.timer < 20):
+            self.width = 4
+        else:
+            self.width = 2
         mouse_x = pg.mouse.get_pos()[0]
         mouse_y = pg.mouse.get_pos()[1]
         if self.new:
@@ -42,13 +48,13 @@ class Effect_mouse:
             self.points_list[i][0] += rand.randint(1, 3)
             self.points_list[i][1] += rand.randint(1, 3)
             if self.points_list[i][2] == 1:
-                self.circle_draw(mouse_x+self.points_list[i][0], mouse_y+self.points_list[i][1])
+                self.circle_draw(mouse_x + self.points_list[i][0], mouse_y + self.points_list[i][1])
             elif self.points_list[i][2] == 2:
-                self.circle_draw(mouse_x-self.points_list[i][0], mouse_y+self.points_list[i][1])
+                self.circle_draw(mouse_x - self.points_list[i][0], mouse_y + self.points_list[i][1])
             elif self.points_list[i][2] == 3:
-                self.circle_draw(mouse_x-self.points_list[i][0], mouse_y-self.points_list[i][1])
+                self.circle_draw(mouse_x - self.points_list[i][0], mouse_y - self.points_list[i][1])
             elif self.points_list[i][2] == 4:
-                self.circle_draw(mouse_x+self.points_list[i][0], mouse_y-self.points_list[i][1])
+                self.circle_draw(mouse_x + self.points_list[i][0], mouse_y - self.points_list[i][1])
 
 
 def start():
