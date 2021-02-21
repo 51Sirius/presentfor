@@ -1,10 +1,10 @@
 import pygame as pg
 import random as rand
 
-blue_color = (161, 234, 251)
+blue_color = (146, 204, 242)
 white_color = (253, 253, 253)
-pink_color = (255, 206, 243)
-purple_color = (202, 187, 233)
+pink_color = [255, 206, 243]
+purple_color = (164,124,233)
 display_size = (1000, 600)
 display = pg.display.set_mode(display_size)
 pg.init()
@@ -12,8 +12,34 @@ clock = pg.time.Clock()
 pg.display.set_caption('Present')
 
 
+def change_color(max, color: tuple):
+    color = list(color)
+    if color[0] <= 255 and color[1] == max and color[0] != max:
+        if color[2] < 255:
+            color[2] += 1
+        elif color[0] != max:
+            color[0] -= 1
+        else:
+            color[0] = max
+    elif color[2] <= 255 and color[0] == max and color[2] != max:
+        if color[1] < 255:
+            color[1] += 1
+        elif color[2] != max:
+            color[2] -= 1
+        else:
+            color[2] = max
+    elif color[1] <= 255 and color[2] == max and color[1] != max:
+        if color[0] < 255:
+            color[0] += 1
+        elif color[1] != max:
+            color[1] -= 1
+        else:
+            color[1] = 0
+    return tuple(color)
+
+
 class Font:
-    def __init__(self, x, y, font_color=pink_color, font_size=30, font_type='20216.ttf',
+    def __init__(self, x, y, font_color=tuple(pink_color), font_size=30, font_type='20216.ttf',
                  message=None):
         self.x = x
         self.y = y
@@ -85,6 +111,7 @@ def start():
         display.fill(blue_color)
         effects_m.mouse()
         font.draw_text()
+        font.font_color = change_color(206, font.font_color)
         pg.display.update()
         clock.tick(80)
 
