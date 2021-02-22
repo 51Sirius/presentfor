@@ -2,8 +2,8 @@ import pygame as pg
 import random as rand
 
 blue_color = (146, 204, 242)
-white_color = (253, 253, 253)
-pink_color = [255, 206, 243]
+white_color = (254, 206, 253)
+pink_color = (255, 206, 243)
 purple_color = (164, 124, 233)
 display_size = (1000, 600)
 display = pg.display.set_mode(display_size)
@@ -12,9 +12,15 @@ clock = pg.time.Clock()
 pg.display.set_caption('Present')
 
 
-def draw_right_flower(middle_color=(255, 255, 0), flower_color=None):
+def draw_right_flower(middle_color=(255, 255, 0), flower_color=(255, 0, 0)):
+    print(middle_color, flower_color)
     color_stem = (0, 255, 0)
+    width_flower = 30
+    length_flower = 80
     stem = pg.draw.line(display, color_stem, [900, 600], [900, 260], 10)
+    first_flower = pg.draw.ellipse(display, flower_color, (885, 180, width_flower, length_flower))
+    second_flower = pg.draw.ellipse(display, flower_color, (780, 285, length_flower, width_flower))
+    third_flower = pg.draw.ellipse(display, flower_color, (940, 285, length_flower, width_flower))
     middle_circle = pg.draw.circle(display, middle_color, (900, 300), 50)
 
 
@@ -106,6 +112,8 @@ class Effect_mouse:
 
 
 def start():
+    color_first = (255, 110, 102)
+    second_color = (255, 246, 102)
     font = Font(100, 200, font_size=60, message='Entry your present')
     effects_m = Effect_mouse()
     number = 1
@@ -117,7 +125,9 @@ def start():
         display.fill(blue_color)
         effects_m.mouse()
         font.draw_text()
-        draw_right_flower()
+        color_first = change_color(102, color_first)
+        second_color = change_color(102, second_color)
+        draw_right_flower(second_color, color_first)
         font.font_color = change_color(206, font.font_color)
         pg.display.update()
         clock.tick(80)
